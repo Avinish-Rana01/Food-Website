@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 
 const Header = ({ setPage }) => {
   // Whenever state variables update, react triggers a reconciliation cycle (it re-renders the components)
-  const [btnNameRaect, setBtnNameReact] = useState("Login");
-  const [activeModal, setActiveModal] = useState(null); // 'about', 'contact', or null
-  const closeModal = () => setActiveModal(null);
+  const [btnNameReact, setBtnNameReact] = useState("Login");
   //Subscribing the store using the selector function, whenever the state of the store changes, 
   // the selector function will be called and the component will re-render with the new state value.
   const cartItems = useSelector((store) => store.cart.items);
@@ -74,52 +72,16 @@ const Header = ({ setPage }) => {
           <button
             className="Login-button"
             onClick={() => {
-              btnNameRaect == "Login"
+              btnNameReact === "Login"
                 ? setBtnNameReact("Logout")
                 : setBtnNameReact("Login");
             }}
           >
-            {btnNameRaect}
+            {btnNameReact}
           </button>
         </div>
       </header>
 
-      {/* Modal Popup */}
-      {activeModal && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal}>
-              &times;
-            </button>
-
-            {activeModal === "about" && (
-              <div className="modal-body">
-                <h2>About Us</h2>
-                <p>
-                  Welcome to Food Villa! We are passionate about delivering the
-                  tastiest meals to your doorstep.
-                </p>
-                <p>
-                  Our journey began with a simple idea: good food, good mood.
-                </p>
-              </div>
-            )}
-
-            {activeModal === "contact" && (
-              <div className="modal-body">
-                <h2>Contact Us</h2>
-                <p>Have questions? Reach out to us!</p>
-                <form className="contact-form">
-                  <input type="text" placeholder="Your Name" />
-                  <input type="email" placeholder="Your Email" />
-                  <textarea placeholder="Message"></textarea>
-                  <button type="button">Send Message</button>
-                </form>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </>
   );
 };
