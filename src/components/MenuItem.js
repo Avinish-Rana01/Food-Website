@@ -54,7 +54,7 @@ const MenuItem = ({ item, sectionTitle, onAddItem }) => {
               alt={info?.name}
             />
             <button
-              className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-white text-green-600 font-extrabold px-8 py-2 rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.15)] border border-green-100 uppercase text-md hover:shadow-lg hover:bg-green-50 transition-all z-20 w-11/12 tracking-wide flex items-center justify-center"
+              className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-white text-green-600 font-extrabold px-8 py-2 rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.15)] border border-green-100 uppercase text-md hover:shadow-lg hover:bg-green-50 active:scale-95 transition-all duration-200 z-20 w-11/12 tracking-wide flex items-center justify-center"
               onClick={() => onAddItem(info)}
             >
               ADD{" "}
@@ -64,7 +64,7 @@ const MenuItem = ({ item, sectionTitle, onAddItem }) => {
         ) : (
           <div className="flex items-center justify-center md:justify-end h-full w-full">
             <button
-              className="bg-white text-green-600 font-extrabold px-10 py-2.5 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-green-100 uppercase text-md hover:shadow-xl hover:bg-green-50 transition-all flex items-center tracking-wide"
+              className="bg-white text-green-600 font-extrabold px-10 py-2.5 rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-green-100 uppercase text-md hover:shadow-xl hover:bg-green-50 active:scale-95 transition-all duration-200 flex items-center tracking-wide"
               onClick={() => onAddItem(info)}
             >
               ADD
