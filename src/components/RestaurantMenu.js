@@ -5,13 +5,13 @@ import { Star, ChevronDown, Search, Leaf } from "lucide-react";
 // Custom Shimmer for Menu to avoid layout shift
 const MenuShimmer = () => {
   return (
-    <div className="min-h-screen pt-8 pb-16 font-sans flex justify-center animate-pulse">
+    <div className="min-h-screen pt-8 pb-16 font-sans flex justify-center bg-[#fcefe7] animate-pulse">
       <div className="w-full max-w-4xl px-4 md:px-10">
-        <div className="h-64 bg-slate-200 rounded-b-3xl mb-12"></div>
+        <div className="h-72 bg-white rounded-[2rem] mb-12 shadow-sm"></div>
         <div className="flex flex-col gap-8">
-          <div className="h-20 bg-slate-200 rounded-2xl w-full"></div>
-          <div className="h-20 bg-slate-200 rounded-2xl w-full"></div>
-          <div className="h-40 bg-slate-200 rounded-2xl w-full"></div>
+          <div className="h-24 bg-white rounded-2xl w-full shadow-sm"></div>
+          <div className="h-24 bg-white rounded-2xl w-full shadow-sm"></div>
+          <div className="h-48 bg-white rounded-2xl w-full shadow-sm"></div>
         </div>
       </div>
     </div>
@@ -37,9 +37,7 @@ const RestaurantMenu = (props) => {
       );
       const json = await data.json();
       setMenuItems(json);
-    } catch (error) {
-      // console.error("Error fetching menu:", error);
-    }
+    } catch (error) {}
   };
 
   const allCards =
@@ -65,31 +63,35 @@ const RestaurantMenu = (props) => {
   const validSections = allCards?.filter((card) => card?.card?.card?.itemCards) || [];
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-6 pb-16 font-sans flex justify-center">
+    <div className="min-h-screen bg-[#fcefe7] pt-8 pb-20 font-sans flex justify-center">
       <div className="w-full max-w-4xl pb-16">
         
         {/* Restaurant Header Banner - Premium Card Style */}
-        <div className="bg-white mx-4 md:mx-10 rounded-[2rem] p-6 md:p-10 mb-8 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center">
+        <div className="bg-white mx-4 md:mx-0 rounded-[2rem] p-8 md:p-12 mb-10 shadow-[0_18px_40px_rgba(0,0,0,0.06)] border border-[#fe862d]/10 flex flex-col md:flex-row justify-between items-start md:items-center overflow-hidden relative">
+          
+          {/* Subtle background gradient overlay for premium feel */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#fe862d]/5 to-transparent rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+
           {/* Left Details */}
-          <div className="flex-1 pr-4">
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2 tracking-tight">
+          <div className="flex-1 pr-4 relative z-10">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-neutral-900 mb-3 tracking-tight">
               {name}
             </h1>
-            <p className="text-slate-500 text-sm md:text-base mb-1 font-medium">
+            <p className="text-neutral-500 text-base md:text-lg mb-2 font-medium">
               {cuisines?.join(", ")}
             </p>
-            <p className="text-slate-400 text-sm mb-6">{locality}</p>
+            <p className="text-neutral-400 text-sm md:text-base mb-8">{locality}</p>
 
-            <div className="flex items-center gap-4 text-sm font-semibold">
-              <span className="flex items-center gap-1.5 bg-green-600 text-white px-3 py-1.5 rounded-lg shadow-sm">
+            <div className="flex items-center gap-5 text-sm font-semibold">
+              <span className="flex items-center gap-1.5 bg-gradient-to-r from-[#fe862d] to-[#ff9e56] text-white px-4 py-2 rounded-xl shadow-[0_6px_15px_rgba(254,134,45,0.25)]">
                 <Star size={16} fill="currentColor" strokeWidth={0} />
-                {avgRating}{" "}
+                <span className="text-base">{avgRating}</span>
                 <span className="text-xs font-medium border-l border-white/40 pl-2 ml-1">
                   {totalRatingsString || "100+"}
                 </span>
               </span>
-              <span className="text-slate-300">•</span>
-              <span className="text-slate-700 font-bold">
+              <span className="text-neutral-300 text-xl">•</span>
+              <span className="text-neutral-800 font-bold text-lg bg-neutral-50 px-4 py-2 rounded-xl border border-neutral-100 shadow-sm">
                 {costForTwoMessage || `₹${costForTwo / 100} for two`}
               </span>
             </div>
@@ -97,9 +99,9 @@ const RestaurantMenu = (props) => {
 
           {/* Right Image */}
           {cloudinaryImageId && (
-            <div className="mt-8 md:mt-0 md:ml-6 shrink-0 w-full md:w-auto">
+            <div className="mt-10 md:mt-0 md:ml-8 shrink-0 w-full md:w-auto relative z-10">
               <img
-                className="w-full h-48 md:w-48 md:h-48 object-cover rounded-3xl shadow-sm border border-slate-100"
+                className="w-full h-56 md:w-56 md:h-56 object-cover rounded-3xl shadow-[0_12px_30px_rgba(0,0,0,0.12)] border-4 border-white transform transition-transform duration-500 hover:scale-105"
                 src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
                 alt={name}
               />
@@ -107,36 +109,35 @@ const RestaurantMenu = (props) => {
           )}
         </div>
 
-        {/* Menu Controls (Search & Filters) */}
-        <div className="px-4 md:px-10 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-           <div className="relative w-full sm:w-72">
+        {/* Menu Controls (Search & Filters) - Sticky for convenience */}
+        <div className="sticky top-[110px] z-30 bg-[#fcefe7]/90 backdrop-blur-md py-4 px-4 md:px-0 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-[#fe862d]/10">
+           <div className="relative w-full sm:w-80">
              <input 
                 type="text"
-                placeholder="Search in menu..."
+                placeholder="Search for delicious food..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white border border-slate-200 rounded-xl py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 transition-all shadow-sm"
+                className="w-full bg-white border border-neutral-200 rounded-full py-3.5 pl-12 pr-6 text-base focus:outline-none focus:ring-4 focus:ring-[#fe862d]/20 focus:border-[#fe862d] transition-all shadow-sm font-medium text-neutral-800 placeholder-neutral-400"
              />
-             <Search size={18} className="text-slate-400 absolute left-3.5 top-1/2 transform -translate-y-1/2" />
+             <Search size={20} className="text-[#fe862d] absolute left-4 top-1/2 transform -translate-y-1/2 opacity-80" />
            </div>
            
-           <label className="flex items-center gap-2 cursor-pointer bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm w-full sm:w-auto justify-center">
-             <span className="text-sm font-semibold text-slate-700">Veg Only</span>
+           <label className="flex items-center gap-3 cursor-pointer bg-white px-5 py-3 rounded-full border border-neutral-200 shadow-sm w-full sm:w-auto justify-center transition-all hover:shadow-md hover:border-[#fe862d]/30">
+             <span className="text-base font-semibold text-neutral-700">Veg Only</span>
              <div className="relative">
                <input type="checkbox" className="sr-only" checked={isVegOnly} onChange={() => setIsVegOnly(!isVegOnly)} />
-               <div className={`block w-10 h-5 rounded-full transition-colors ${isVegOnly ? 'bg-green-500' : 'bg-slate-300'}`}></div>
-               <div className={`dot absolute left-1 top-1 bg-white w-3 h-3 rounded-full transition-transform ${isVegOnly ? 'transform translate-x-5' : ''}`}></div>
+               <div className={`block w-12 h-6 rounded-full transition-colors duration-300 ${isVegOnly ? 'bg-green-500' : 'bg-neutral-200'}`}></div>
+               <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 shadow-sm ${isVegOnly ? 'transform translate-x-6' : ''}`}></div>
              </div>
-             <Leaf size={16} className={isVegOnly ? "text-green-600" : "text-slate-400"} />
+             <Leaf size={18} className={isVegOnly ? "text-green-500" : "text-neutral-400"} />
            </label>
         </div>
 
         {/* Menu Listing */}
-        <div className="px-4 md:px-10">
-          <div className="flex flex-col gap-6">
+        <div className="px-4 md:px-0">
+          <div className="flex flex-col gap-8">
             {validSections.map((card, index) => {
               const section = card.card.card;
-              // Filter logic applied to the section's items
               let filteredItems = section?.itemCards || [];
               
               if (searchQuery) {
@@ -151,7 +152,6 @@ const RestaurantMenu = (props) => {
                 );
               }
 
-              // Hide empty sections after filtering
               if (filteredItems.length === 0) return null;
 
               return (
@@ -173,30 +173,28 @@ const RestaurantCategory = ({ section, defaultOpen }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="w-full bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-      {/* Section Title Button (Accessible) */}
+    <div className="w-full bg-white rounded-3xl shadow-[0_8px_25px_rgba(0,0,0,0.04)] border border-neutral-100 overflow-hidden transition-all duration-300 hover:shadow-[0_12px_35px_rgba(0,0,0,0.06)]">
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
-        className="w-full px-6 py-5 bg-white flex justify-between items-center cursor-pointer transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-slate-200"
+        className="w-full px-6 py-6 md:px-8 bg-white flex justify-between items-center cursor-pointer transition-colors hover:bg-neutral-50/50 focus:outline-none"
       >
-        <h3 className="text-lg font-bold text-slate-800 tracking-tight flex items-center gap-2">
+        <h3 className="text-xl md:text-2xl font-bold text-neutral-800 tracking-tight flex items-center gap-3">
           {section?.title}
-          <span className="text-sm font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+          <span className="text-sm font-bold text-[#fe862d] bg-[#fe862d]/10 px-3 py-1 rounded-full">
             {section?.itemCards?.length}
           </span>
         </h3>
-        <ChevronDown 
-          size={20} 
-          className={`text-slate-400 transform transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} 
-        />
+        <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-[#fe862d]/10' : 'bg-neutral-100'}`}>
+          <ChevronDown 
+            size={24} 
+            className={`transform transition-transform duration-300 ${isOpen ? "rotate-180 text-[#fe862d]" : "text-neutral-500"}`} 
+          />
+        </div>
       </button>
 
-      {/* Section Items */}
-      <div 
-         className={`transition-all duration-500 ease-in-out ${isOpen ? "max-h-[5000px] opacity-100" : "max-h-0 opacity-0"}`}
-      >
-        <div className="px-4 pb-4">
+      <div className={`transition-all duration-500 ease-in-out ${isOpen ? "max-h-[8000px] opacity-100 pb-4" : "max-h-0 opacity-0"}`}>
+        <div className="px-4 md:px-6">
           {section?.itemCards?.map((item, i) => (
             <MenuItem
               key={i}
