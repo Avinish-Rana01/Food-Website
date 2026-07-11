@@ -2,22 +2,56 @@ import { useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
 import { Star, ChevronDown, Search, Leaf } from "lucide-react";
 
-// Custom Shimmer for Menu to avoid layout shift
+/* ─── Premium Skeleton Loader ─── */
 const MenuShimmer = () => {
   return (
-    <div className="min-h-screen pt-8 pb-16 font-sans flex justify-center bg-[#fcefe7] animate-pulse">
-      <div className="w-full max-w-4xl px-4 md:px-10">
-        <div className="h-72 bg-white rounded-[2rem] mb-12 shadow-sm"></div>
-        <div className="flex flex-col gap-8">
-          <div className="h-24 bg-white rounded-2xl w-full shadow-sm"></div>
-          <div className="h-24 bg-white rounded-2xl w-full shadow-sm"></div>
-          <div className="h-48 bg-white rounded-2xl w-full shadow-sm"></div>
+    <div className="min-h-screen bg-[#FFF8F3] pt-12 pb-24 flex justify-center">
+      <div className="w-full max-w-[960px] px-5 md:px-8">
+        {/* Hero skeleton */}
+        <div className="bg-white rounded-[2rem] px-8 py-10 md:px-12 md:py-12 mb-14 shadow-[0_4px_40px_rgba(0,0,0,0.04)] overflow-hidden">
+          <div className="flex flex-col md:flex-row items-center gap-10 animate-pulse">
+            <div className="flex-1 space-y-4">
+              <div className="h-10 w-3/4 bg-[#FFE7D2] rounded-2xl"></div>
+              <div className="h-5 w-1/2 bg-[#FFE7D2]/60 rounded-xl"></div>
+              <div className="h-4 w-1/3 bg-[#FFE7D2]/40 rounded-xl"></div>
+              <div className="flex gap-3 pt-4">
+                <div className="h-10 w-28 bg-[#FFE7D2] rounded-xl"></div>
+                <div className="h-10 w-36 bg-[#FFE7D2]/60 rounded-xl"></div>
+              </div>
+            </div>
+            <div className="w-full md:w-44 h-44 bg-[#FFE7D2] rounded-3xl shrink-0"></div>
+          </div>
+        </div>
+        {/* Search skeleton */}
+        <div className="animate-pulse mb-14 max-w-2xl mx-auto">
+          <div className="h-[56px] bg-white rounded-full shadow-sm"></div>
+        </div>
+        {/* Category skeletons */}
+        <div className="space-y-8 animate-pulse">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="bg-white rounded-3xl px-8 py-8 md:px-10 md:py-10 shadow-[0_2px_20px_rgba(0,0,0,0.03)]">
+              <div className="h-7 w-2/5 bg-[#FFE7D2] rounded-xl mb-6"></div>
+              <div className="space-y-5">
+                {[1, 2].map((j) => (
+                  <div key={j} className="flex items-center gap-6">
+                    <div className="w-[65%] space-y-3">
+                      <div className="h-5 w-3/5 bg-[#FFE7D2]/60 rounded-lg"></div>
+                      <div className="h-4 w-1/4 bg-[#FFE7D2]/40 rounded-lg"></div>
+                      <div className="h-3 w-full bg-[#FFE7D2]/30 rounded-lg"></div>
+                    </div>
+                    <div className="w-28 h-28 bg-[#FFE7D2] rounded-2xl shrink-0 ml-auto"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
+/* ─── Main Component ─── */
 const RestaurantMenu = (props) => {
   const [menuItems, setMenuItems] = useState([]);
   const [restaurantId, setRestaurantId] = useState(props.restaurantId);
@@ -43,7 +77,6 @@ const RestaurantMenu = (props) => {
   const allCards =
     menuItems?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
-  // Show skeleton loading state
   if (!menuItems?.data) {
     return <MenuShimmer />;
   }
@@ -59,151 +92,175 @@ const RestaurantMenu = (props) => {
     totalRatingsString,
   } = menuItems?.data?.cards[2]?.card?.card?.info || {};
 
-  // Extract valid sections
   const validSections = allCards?.filter((card) => card?.card?.card?.itemCards) || [];
 
   return (
-    <div className="min-h-screen bg-[#fcefe7] pt-8 pb-20 font-sans flex justify-center">
-      <div className="w-full max-w-4xl pb-16">
-        
-        {/* Restaurant Header Banner - Premium Card Style */}
-        <div className="bg-white mx-4 md:mx-0 rounded-[2rem] p-8 md:p-12 mb-10 shadow-[0_18px_40px_rgba(0,0,0,0.06)] border border-[#fe862d]/10 flex flex-col md:flex-row justify-between items-start md:items-center overflow-hidden relative">
-          
-          {/* Subtle background gradient overlay for premium feel */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#fe862d]/5 to-transparent rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+    <div className="min-h-screen bg-[#FFF8F3] pt-12 pb-28 flex justify-center font-sans">
+      <div className="w-full max-w-[960px] px-5 md:px-8">
 
-          {/* Left Details */}
-          <div className="flex-1 pr-4 relative z-10">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-neutral-900 mb-3 tracking-tight">
-              {name}
-            </h1>
-            <p className="text-neutral-500 text-base md:text-lg mb-2 font-medium">
-              {cuisines?.join(", ")}
-            </p>
-            <p className="text-neutral-400 text-sm md:text-base mb-8">{locality}</p>
+        {/* ── Restaurant Hero Card ── */}
+        <div className="bg-white rounded-[2rem] px-8 py-8 md:px-12 md:py-12 mb-14 shadow-[0_4px_40px_rgba(0,0,0,0.04)] border border-[#F4D8C3]/50 overflow-hidden relative">
+          {/* Decorative warm glow */}
+          <div className="absolute -top-24 -right-24 w-72 h-72 bg-[#FF8A2A]/[0.04] rounded-full blur-3xl pointer-events-none" />
 
-            <div className="flex items-center gap-5 text-sm font-semibold">
-              <span className="flex items-center gap-1.5 bg-gradient-to-r from-[#fe862d] to-[#ff9e56] text-white px-4 py-2 rounded-xl shadow-[0_6px_15px_rgba(254,134,45,0.25)]">
-                <Star size={16} fill="currentColor" strokeWidth={0} />
-                <span className="text-base">{avgRating}</span>
-                <span className="text-xs font-medium border-l border-white/40 pl-2 ml-1">
-                  {totalRatingsString || "100+"}
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-8 relative z-10">
+            {/* Left: Info */}
+            <div className="flex-1 min-w-0 md:pr-8">
+              <h1 className="text-[2.5rem] md:text-[3rem] font-extrabold text-[#2D2D2D] leading-tight tracking-tight mb-4">
+                {name}
+              </h1>
+              <p className="text-[#6B6B6B] text-base md:text-lg font-medium mb-2">
+                {cuisines?.join(", ")}
+              </p>
+              <p className="text-[#6B6B6B]/70 text-sm mb-10">{locality}</p>
+
+              <div className="flex flex-wrap items-center gap-5">
+                {/* Rating badge */}
+                <span className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FF8A2A] to-[#F97316] text-white px-5 py-2.5 rounded-2xl shadow-[0_6px_20px_rgba(255,138,42,0.3)] text-sm font-bold">
+                  <Star size={15} fill="currentColor" strokeWidth={0} />
+                  <span className="text-[15px]">{avgRating}</span>
+                  <span className="w-px h-4 bg-white/30" />
+                  <span className="text-xs font-medium opacity-90">
+                    {totalRatingsString || "100+"}
+                  </span>
                 </span>
-              </span>
-              <span className="text-neutral-300 text-xl">•</span>
-              <span className="text-neutral-800 font-bold text-lg bg-neutral-50 px-4 py-2 rounded-xl border border-neutral-100 shadow-sm">
-                {costForTwoMessage || `₹${costForTwo / 100} for two`}
-              </span>
+                {/* Cost pill */}
+                <span className="inline-flex items-center text-[#2D2D2D] font-bold text-sm bg-[#FFE7D2]/60 px-5 py-2.5 rounded-2xl border border-[#F4D8C3]">
+                  {costForTwoMessage || `₹${costForTwo / 100} for two`}
+                </span>
+              </div>
             </div>
-          </div>
 
-          {/* Right Image */}
-          {cloudinaryImageId && (
-            <div className="mt-10 md:mt-0 md:ml-8 shrink-0 w-full md:w-auto relative z-10">
-              <img
-                className="w-full h-56 md:w-56 md:h-56 object-cover rounded-3xl shadow-[0_12px_30px_rgba(0,0,0,0.12)] border-4 border-white transform transition-transform duration-500 hover:scale-105"
-                src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
-                alt={name}
-              />
-            </div>
-          )}
+            {/* Right: Image */}
+            {cloudinaryImageId && (
+              <div className="w-full md:w-auto shrink-0">
+                <img
+                  className="w-full h-48 md:w-44 md:h-44 object-cover rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.1)] border-[3px] border-white transition-transform duration-500 hover:scale-[1.03]"
+                  src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
+                  alt={name}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Menu Controls (Search & Filters) - Sticky for convenience */}
-        <div className="sticky top-[110px] z-30 bg-[#fcefe7]/90 backdrop-blur-md py-4 px-4 md:px-0 mb-8 flex flex-col sm:flex-row justify-between items-center gap-4 border-b border-[#fe862d]/10">
-           <div className="relative w-full sm:w-80">
-             <input 
+        {/* ── Sticky Search & Filter Bar ── */}
+        <div className="sticky top-[110px] z-30 bg-[#FFF8F3]/85 backdrop-blur-xl py-5 mb-12">
+          <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-4">
+            {/* Search */}
+            <div className="relative w-full sm:flex-1">
+              <Search
+                size={20}
+                className="absolute left-5 top-1/2 -translate-y-1/2 text-[#FF8A2A] opacity-70 pointer-events-none"
+              />
+              <input
                 type="text"
                 placeholder="Search for delicious food..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white border border-neutral-200 rounded-full py-3.5 pl-12 pr-6 text-base focus:outline-none focus:ring-4 focus:ring-[#fe862d]/20 focus:border-[#fe862d] transition-all shadow-sm font-medium text-neutral-800 placeholder-neutral-400"
-             />
-             <Search size={20} className="text-[#fe862d] absolute left-4 top-1/2 transform -translate-y-1/2 opacity-80" />
-           </div>
-           
-           <label className="flex items-center gap-3 cursor-pointer bg-white px-5 py-3 rounded-full border border-neutral-200 shadow-sm w-full sm:w-auto justify-center transition-all hover:shadow-md hover:border-[#fe862d]/30">
-             <span className="text-base font-semibold text-neutral-700">Veg Only</span>
-             <div className="relative">
-               <input type="checkbox" className="sr-only" checked={isVegOnly} onChange={() => setIsVegOnly(!isVegOnly)} />
-               <div className={`block w-12 h-6 rounded-full transition-colors duration-300 ${isVegOnly ? 'bg-green-500' : 'bg-neutral-200'}`}></div>
-               <div className={`dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 shadow-sm ${isVegOnly ? 'transform translate-x-6' : ''}`}></div>
-             </div>
-             <Leaf size={18} className={isVegOnly ? "text-green-500" : "text-neutral-400"} />
-           </label>
+                className="w-full h-[56px] bg-white rounded-full pl-14 pr-6 text-[15px] font-medium text-[#2D2D2D] placeholder-[#6B6B6B]/50 border border-[#F4D8C3]/70 shadow-[0_2px_12px_rgba(0,0,0,0.03)] outline-none transition-all duration-300 focus:border-[#FF8A2A] focus:shadow-[0_4px_24px_rgba(255,138,42,0.12)] focus:ring-4 focus:ring-[#FF8A2A]/10"
+              />
+            </div>
+            {/* Veg filter chip */}
+            <label
+              className={`flex items-center gap-2.5 cursor-pointer h-[56px] px-6 rounded-full border text-sm font-bold transition-all duration-300 select-none shrink-0 ${
+                isVegOnly
+                  ? "bg-green-600 text-white border-green-600 shadow-[0_4px_16px_rgba(22,163,74,0.25)]"
+                  : "bg-white text-[#2D2D2D] border-[#F4D8C3]/70 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-[#FF8A2A]/40 hover:shadow-[0_4px_16px_rgba(255,138,42,0.08)]"
+              }`}
+            >
+              <Leaf size={16} className={isVegOnly ? "text-white" : "text-green-600"} />
+              <span>Veg Only</span>
+              <input
+                type="checkbox"
+                className="sr-only"
+                checked={isVegOnly}
+                onChange={() => setIsVegOnly(!isVegOnly)}
+              />
+            </label>
+          </div>
         </div>
 
-        {/* Menu Listing */}
-        <div className="px-4 md:px-0">
-          <div className="flex flex-col gap-8">
-            {validSections.map((card, index) => {
-              const section = card.card.card;
-              let filteredItems = section?.itemCards || [];
-              
-              if (searchQuery) {
-                filteredItems = filteredItems.filter(item => 
-                  item?.card?.info?.name?.toLowerCase().includes(searchQuery.toLowerCase())
-                );
-              }
-              
-              if (isVegOnly) {
-                filteredItems = filteredItems.filter(item => 
-                   item?.card?.info?.itemAttribute?.vegClassifier === "VEG" || item?.card?.info?.isVeg
-                );
-              }
+        {/* ── Menu Categories ── */}
+        <div className="flex flex-col gap-10">
+          {validSections.map((card, index) => {
+            const section = card.card.card;
+            let filteredItems = section?.itemCards || [];
 
-              if (filteredItems.length === 0) return null;
-
-              return (
-                 <RestaurantCategory 
-                    key={index} 
-                    section={{...section, itemCards: filteredItems}} 
-                    defaultOpen={index === 0} 
-                 />
+            if (searchQuery) {
+              filteredItems = filteredItems.filter((item) =>
+                item?.card?.info?.name
+                  ?.toLowerCase()
+                  .includes(searchQuery.toLowerCase())
               );
-            })}
-          </div>
+            }
+
+            if (isVegOnly) {
+              filteredItems = filteredItems.filter(
+                (item) =>
+                  item?.card?.info?.itemAttribute?.vegClassifier === "VEG" ||
+                  item?.card?.info?.isVeg
+              );
+            }
+
+            if (filteredItems.length === 0) return null;
+
+            return (
+              <RestaurantCategory
+                key={index}
+                section={{ ...section, itemCards: filteredItems }}
+                defaultOpen={index === 0}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
   );
 };
 
+/* ─── Category Accordion ─── */
 const RestaurantCategory = ({ section, defaultOpen }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="w-full bg-white rounded-3xl shadow-[0_8px_25px_rgba(0,0,0,0.04)] border border-neutral-100 overflow-hidden transition-all duration-300 hover:shadow-[0_12px_35px_rgba(0,0,0,0.06)]">
+    <div className="bg-white rounded-3xl shadow-[0_2px_20px_rgba(0,0,0,0.03)] border border-[#F4D8C3]/40 overflow-hidden transition-shadow duration-300 hover:shadow-[0_4px_28px_rgba(0,0,0,0.05)]">
+      {/* Accordion header */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
-        className="w-full px-6 py-6 md:px-8 bg-white flex justify-between items-center cursor-pointer transition-colors hover:bg-neutral-50/50 focus:outline-none"
+        className="w-full flex items-center justify-between px-7 py-6 md:px-10 cursor-pointer transition-colors duration-200 hover:bg-[#FFF8F3]/60 focus:outline-none group"
       >
-        <h3 className="text-xl md:text-2xl font-bold text-neutral-800 tracking-tight flex items-center gap-3">
+        <h3 className="text-xl md:text-[22px] font-bold text-[#2D2D2D] tracking-tight flex items-center gap-3">
           {section?.title}
-          <span className="text-sm font-bold text-[#fe862d] bg-[#fe862d]/10 px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-[#FF8A2A] bg-[#FFE7D2] px-3 py-1 rounded-full">
             {section?.itemCards?.length}
           </span>
         </h3>
-        <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-[#fe862d]/10' : 'bg-neutral-100'}`}>
-          <ChevronDown 
-            size={24} 
-            className={`transform transition-transform duration-300 ${isOpen ? "rotate-180 text-[#fe862d]" : "text-neutral-500"}`} 
+        <div
+          className={`p-2 rounded-full transition-all duration-300 ${
+            isOpen
+              ? "bg-[#FFE7D2] rotate-180"
+              : "bg-[#FFF8F3] group-hover:bg-[#FFE7D2]/60"
+          }`}
+        >
+          <ChevronDown
+            size={22}
+            className={`transition-colors duration-300 ${
+              isOpen ? "text-[#FF8A2A]" : "text-[#6B6B6B]"
+            }`}
           />
         </div>
       </button>
 
-      <div className={`transition-all duration-500 ease-in-out ${isOpen ? "max-h-[8000px] opacity-100 pb-4" : "max-h-0 opacity-0"}`}>
-        <div className="px-4 md:px-6">
+      {/* Accordion body */}
+      {isOpen && (
+        <div className="px-4 md:px-8 pb-4">
           {section?.itemCards?.map((item, i) => (
-            <MenuItem
-              key={i}
-              item={item}
-              sectionTitle={section?.title}
-            />
+            <MenuItem key={i} item={item} sectionTitle={section?.title} />
           ))}
         </div>
-      </div>
+      )}
     </div>
   );
 };
