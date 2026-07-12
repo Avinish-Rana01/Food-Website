@@ -59,22 +59,22 @@ const RestaurantMenu = (props) => {
   const [isVegOnly, setIsVegOnly] = useState(false);
 
   useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const data = await fetch(
+          `https://avi-grills-api.onrender.com/api/restaurant/${restaurantId}`,
+        );
+        const json = await data.json();
+        setMenuItems(json);
+      } catch (error) {
+        console.error("Failed to fetch menu:", error);
+      }
+    };
+
     if (restaurantId) {
       fetchMenu();
     }
   }, [restaurantId]);
-
-  const fetchMenu = async () => {
-    try {
-      const data = await fetch(
-        `https://avi-grills-api.onrender.com/api/restaurant/${restaurantId}`,
-      );
-      const json = await data.json();
-      setMenuItems(json);
-    } catch (error) {
-      console.error("Failed to fetch menu:", error);
-    }
-  };
 
   const allCards =
     menuItems?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
