@@ -71,7 +71,9 @@ const RestaurantMenu = (props) => {
       );
       const json = await data.json();
       setMenuItems(json);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Failed to fetch menu:", error);
+    }
   };
 
   const allCards =
