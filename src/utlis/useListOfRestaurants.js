@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+/**
+ * Hook to fetch the complete list of restaurants.
+ * Used for maintaining the state of all available restaurants.
+ */
 const useListOfRestaurants = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
