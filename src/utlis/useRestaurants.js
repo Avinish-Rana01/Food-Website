@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+/**
+ * Custom hook to fetch and manage the initial list of restaurants.
+ * Provides the main restaurant grid data from the API.
+ */
 const useRestaurants = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   
