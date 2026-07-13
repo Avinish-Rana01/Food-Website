@@ -77,7 +77,7 @@ const RestaurantMenu = (props) => {
   }, [restaurantId]);
 
   const allCards =
-    menuItems?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    menuItems?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
   if (!menuItems?.data) {
     return <MenuShimmer />;
@@ -92,7 +92,7 @@ const RestaurantMenu = (props) => {
     cuisines,
     locality,
     totalRatingsString,
-  } = menuItems?.data?.cards[2]?.card?.card?.info || {};
+  } = menuItems?.data?.cards?.[2]?.card?.card?.info || {};
 
   const validSections = allCards?.filter((card) => card?.card?.card?.itemCards) || [];
 
