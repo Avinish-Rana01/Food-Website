@@ -16,7 +16,7 @@ const useRestaurants = () => {
       const data = await fetch(
         "https://avi-grills-api.onrender.com/api/restaurants",
       );
-      console.log(data);
+
       const json = await data.json();
       
       // Find the card that contains the restaurant list dynamically
