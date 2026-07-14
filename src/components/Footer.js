@@ -48,7 +48,7 @@ const Footer = () => {
 
             </div>
             <div className="footer-bottom">
-                <p>&copy; 2025 Avi Grills. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Avi Grills. All rights reserved.</p>
             </div>
         </footer>
     );
