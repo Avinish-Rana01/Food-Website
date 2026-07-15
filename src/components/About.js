@@ -105,12 +105,12 @@ const About = () => {
         <h2>Meet Our Master Chefs</h2>
         <div className="team-grid">
           <div className="team-member">
-            <img src={chef1} alt="Chef Madhav" />
+            <img src={chef1} alt="Chef Madhav" loading="lazy" />
             <h3>Chef Madhav</h3>
             <p>Executive Chef</p>
           </div>
           <div className="team-member">
-            <img src={chef2} alt="Chef Meena" />
+            <img src={chef2} alt="Chef Meena" loading="lazy" />
             <h3>Chef Meena</h3>
             <p>Sous Chef</p>
           </div>
