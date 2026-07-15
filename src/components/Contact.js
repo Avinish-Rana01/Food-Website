@@ -28,21 +28,21 @@ const Contact = () => {
                 <form className="contact-form-premium">
                     <div className="form-row">
                         <div className="form-group">
-                            <label>Full Name</label>
-                            <input type="text" placeholder="John Doe" required />
+                            <label htmlFor="fullName">Full Name</label>
+                            <input id="fullName" type="text" placeholder="John Doe" required />
                         </div>
                         <div className="form-group">
-                            <label>Email Address</label>
-                            <input type="email" placeholder="john@example.com" required />
+                            <label htmlFor="email">Email Address</label>
+                            <input id="email" type="email" placeholder="john@example.com" required />
                         </div>
                     </div>
                     <div className="form-group">
-                        <label>Subject</label>
-                        <input type="text" placeholder="Order Inquiry" />
+                        <label htmlFor="subject">Subject</label>
+                        <input id="subject" type="text" placeholder="Order Inquiry" />
                     </div>
                     <div className="form-group">
-                        <label>Message</label>
-                        <textarea placeholder="How can we help you?" rows="5" required></textarea>
+                        <label htmlFor="message">Message</label>
+                        <textarea id="message" placeholder="How can we help you?" rows="5" required></textarea>
                     </div>
                     <button type="submit" className="submit-btn" onClick={(e) => e.preventDefault()}>
                         Send Message
