@@ -79,7 +79,7 @@ const Cart = ({ setPage }) => {
                             />
                             <div className="cart-item-details">
                                 <h3>{item.name}</h3>
-                                <p>{item.cuisines ? item.cuisines.join(", ") : ""}</p>
+                                {item.cuisines && item.cuisines.length > 0 && <p>{item.cuisines.join(", ")}</p>}
                                 <p>{item.costForTwoMessage || `₹${(item.price || item.defaultPrice || 0) / 100}`}</p>
                             </div>
                             <div className="cart-qty-control">
