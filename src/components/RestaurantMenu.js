@@ -209,7 +209,7 @@ const RestaurantMenu = (props) => {
 
             return (
               <RestaurantCategory
-                key={index}
+                key={section?.title || index}
                 section={{ ...section, itemCards: filteredItems }}
                 defaultOpen={index === 0}
               />
