@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart, removeItem } from "../utlis/cartSlice";
 import { Minus, Plus } from "lucide-react";
 
+/**
+ * MenuItem component to display individual food items.
+ * @param {Object} props - The component props.
+ * @param {Object} props.item - The food item details.
+ * @param {string} props.sectionTitle - The category/section title.
+ */
 const MenuItem = ({ item, sectionTitle }) => {
   const info = item?.card?.info;
   const price = info?.price || info?.defaultPrice;
