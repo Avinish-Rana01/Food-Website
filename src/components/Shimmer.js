@@ -1,3 +1,7 @@
+/**
+ * Shimmer component for displaying loading placeholders.
+ * Renders a grid of skeleton cards while data is being fetched.
+ */
 const Shimmer = () => {
   // You can easily change this number to render more or fewer cards!
   const shimmerCardCount = 20;
