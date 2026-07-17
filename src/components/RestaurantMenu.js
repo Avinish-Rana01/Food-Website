@@ -158,6 +158,7 @@ const RestaurantMenu = (props) => {
               <input
                 type="text"
                 placeholder="Search for delicious food..."
+                aria-label="Search menu items"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full h-[56px] bg-white rounded-full pl-14 pr-6 text-[15px] font-medium text-[#2D2D2D] placeholder-[#6B6B6B]/50 border border-[#F4D8C3]/70 shadow-[0_2px_12px_rgba(0,0,0,0.03)] outline-none transition-all duration-300 focus:border-[#FF8A2A] focus:shadow-[0_4px_24px_rgba(255,138,42,0.12)] focus:ring-4 focus:ring-[#FF8A2A]/10"
