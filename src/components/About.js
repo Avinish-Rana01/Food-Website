@@ -48,7 +48,7 @@ const About = () => {
               experiences, one plate at a time.
             </p>
 
-            <p>Good food. Honest cooking. Unmatched vibes. 🔥</p>
+            <p>Good food. Honest cooking. Unmatched vibes. <span role="img" aria-label="fire">🔥</span></p>
           </div>
         </div>
       </div>
