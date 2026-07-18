@@ -14,7 +14,7 @@ const useRestaurants = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://avi-grills-api.onrender.com/api/restaurants",
+        "https://avi-grills-api-ys59.onrender.com/api/restaurants",
       );
 
       const json = await data.json();

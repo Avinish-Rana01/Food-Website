@@ -62,7 +62,7 @@ const RestaurantMenu = (props) => {
     const fetchMenu = async () => {
       try {
         const data = await fetch(
-          `https://avi-grills-api.onrender.com/api/restaurant/${restaurantId}`,
+          `https://avi-grills-api-ys59.onrender.com/api/restaurant/${restaurantId}`,
         );
         const json = await data.json();
         setMenuItems(json);
