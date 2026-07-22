@@ -54,7 +54,7 @@ const MenuShimmer = () => {
 /* ─── Main Component ─── */
 const RestaurantMenu = (props) => {
   const [menuItems, setMenuItems] = useState([]);
-  const [restaurantId, setRestaurantId] = useState(props.restaurantId);
+  const restaurantId = props.restaurantId;
   const [searchQuery, setSearchQuery] = useState("");
   const [isVegOnly, setIsVegOnly] = useState(false);
 
