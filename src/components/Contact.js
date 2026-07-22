@@ -25,7 +25,7 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <form className="contact-form-premium">
+                <form className="contact-form-premium" onSubmit={(e) => e.preventDefault()}>
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="fullName">Full Name</label>
@@ -44,7 +44,7 @@ const Contact = () => {
                         <label htmlFor="message">Message</label>
                         <textarea id="message" placeholder="How can we help you?" rows="5" required></textarea>
                     </div>
-                    <button type="submit" className="submit-btn" onClick={(e) => e.preventDefault()}>
+                    <button type="submit" className="submit-btn">
                         Send Message
                     </button>
                 </form>
