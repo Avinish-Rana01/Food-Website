@@ -20,7 +20,7 @@ describe("Contact Component", () => {
     render(<Contact />);
 
     const button = screen.getByRole("button");
-    // const buttonText = screen.getByText("Random Text");
+    expect(button).toBeInTheDocument();
   });
   // We can also write "it" instead of "test". The "it" is just an alias for "test" and can be used interchangeably. 
   // Some developers prefer to use "it" because it can make test descriptions read more naturally, like "it should load button". 
