@@ -5,6 +5,7 @@ const About = () => {
   return (
     <div className="about-container">
       {/* Hero Section */}
+      {/* Displays the main banner image and title */}
       <div className="about-hero" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80')" }}>
         <div className="about-hero-overlay">
           <h1>About Avi Grills</h1>
