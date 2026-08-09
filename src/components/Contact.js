@@ -8,6 +8,7 @@ const Contact = () => {
 
             <div className="contact-content">
                 <div className="contact-info">
+                    {/* Contact information cards */}
                     <div className="info-card"> 
                         <div className="info-icon">📍</div>
                         <h3>Visit Us</h3>
