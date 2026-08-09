@@ -24,6 +24,7 @@ const Footer = () => {
                             href="https://www.instagram.com/ig_avinish01/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Instagram"
                         >
                             Instagram
                         </a>
@@ -32,6 +33,7 @@ const Footer = () => {
                             href="https://www.instagram.com/ig_avinish01/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Twitter"
                         >
                             Twitter
                         </a>
@@ -40,6 +42,7 @@ const Footer = () => {
                             href="https://www.instagram.com/ig_avinish01/"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Facebook"
                         >
                             Facebook
                         </a>
