@@ -147,6 +147,7 @@ const RestaurantMenu = (props) => {
         </div>
 
         {/* ── Sticky Search & Filter Bar ── */}
+        {/* Adds a sticky search and filter bar for menu items */}
         <div className="sticky top-[110px] z-30 bg-[#FFF8F3]/85 backdrop-blur-xl py-5 mb-12">
           <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-4">
             {/* Search */}
